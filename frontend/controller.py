@@ -43,8 +43,7 @@ def createTableInferencia():
             longitud float,
             color text,
             nombreUsuario text,
-            publico Integer,
-            primary key(nombreComun)
+            publico Integer
         )"""
     )
     conn.commit()
@@ -57,8 +56,7 @@ def createTableBiblioteca():
         """CREATE TABLE biblioteca (
             nombreComun text,
             detalles text,
-            rutaImagen text,
-            primary key(nombreComun)
+            rutaImagen text
         )"""
     )
     conn.commit()
@@ -71,8 +69,7 @@ def createTableBlog():
         """CREATE TABLE blog (
             nombreUsuario text,
             comentario text,
-            rutaImagen text,
-            primary key(nombreUsuario)
+            rutaImagen text
         )"""
     )
     conn.commit()
@@ -159,6 +156,23 @@ def deleteInferencia(nombreComun):
     conn.commit()
     conn.close()
 
+def get_all_blogs():
+    conn = sql.connect("insects.db")
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM blog')
+    data = cursor.fetchall()
+    conn.commit()
+    conn.close()
+    return data
+
+def insertRowBlog(nombreUsuario,comentario,rutaImagen):
+    conn = sql.connect("insects.db")
+    cursor = conn.cursor()
+    instruccion = f"INSERT INTO blog VALUES ('{nombreUsuario}','{comentario}','{rutaImagen}')"
+    cursor.execute(instruccion)
+    conn.commit()
+    conn.close()
+
 if __name__ == "__main__":
     #createDB()
     #createTableUsers()
@@ -186,4 +200,6 @@ if __name__ == "__main__":
     #insertRowInferencia("Grasshopper", 3.3638927, -76.5255511, "#00ff11","grivera", 1)
     #insertRowInferencia("Ladybird", 3.3638927, -76.5255511, "#ff2200","grivera", 0)  
     #print(readRowsInferencia())
+
+    #insertRowBlog("jalarcon","Hoy visitando el parque de la flora me encontré una abeja tomando agua","Fue genial")
     pass

@@ -1,4 +1,5 @@
 import streamlit as st
+import controller as ct
 
 st.set_page_config(layout="wide",page_title="Insect ID")
 
@@ -41,3 +42,33 @@ st.write(
     \n Que esperas para descubrir todo lo que tenemos para ti!'''
 )
 
+def LoggedIn_Clicked(userName, password):
+    #logStatus, messageLog = dbuser_consultation(userName,password)    
+    logStatus, messageLog = ct.searchUsers(userName, password)
+    if logStatus:
+        st.session_state.userN = userName        
+        st.session_state['loggedIn'] = True
+    else:
+        st.session_state['loggedIn'] = False
+        st.error(messageLog)
+    
+def show_login_page():
+    if st.session_state['loggedIn'] == False:
+        st.session_state.userN = ""
+        userName = st.sidebar.text_input (label="", value="", placeholder="Enter your user name")
+        password = st.sidebar.text_input (label="", value="",placeholder="Enter password", type="password")
+        st.sidebar.button ("Login", on_click=LoggedIn_Clicked, args= (userName, password))
+
+def LoggedOut_Clicked():
+    st.session_state.userN = ""
+    st.session_state['loggedIn'] = False
+
+if 'loggedIn' not in st.session_state:
+    st.session_state['loggedIn'] = False
+    show_login_page() 
+else:
+    if st.session_state['loggedIn']:
+        st.sidebar.write(f"## Welcome {st.session_state.userN}")
+        st.sidebar.button ("Logout", on_click=LoggedOut_Clicked) 
+    else:        
+        show_login_page()

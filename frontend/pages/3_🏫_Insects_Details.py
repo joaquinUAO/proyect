@@ -6,5 +6,5 @@ st.set_page_config(layout="wide", page_title="Insects Details")
 
 st.write("## Insects Details")
 st.write(
-    ":ladybug: Descripción... :book:"
+    ":ladybug: Educational content of interest. :book:"
 )

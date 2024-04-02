@@ -13,12 +13,15 @@ st.write(
 df2 = pd.DataFrame(ct.readRowsInferencia())
 df2 = df2.drop (0, axis = 1)
 df2 = df2.rename(columns={1: 'lat', 2: 'lon', 3: 'color'})
-print(df2)
 
-#df = pd.DataFrame({
-#    "lat": np.random.randn(1000) / 50 + 3.3638927,
-#    "lon": np.random.randn(1000) / 50 + -76.5255511,
-#    #"color": np.random.rand(1000, 4).tolist()
-#    "color": '[200, 30, 200, 160]',
-#})
 st.map(df2)
+
+#data = {
+#    'latitude': [34.0522, 37.7749, 40.7128],
+#    'longitude': [-118.2437, -122.4194, -74.0060],
+#    'color': ['red', 'green', 'blue'],
+#    'size': [10, 20, 15]
+#}
+#df = pd.DataFrame(data)
+# Display the map with colored and sized markers
+#st.map(df, size="size", color="color")

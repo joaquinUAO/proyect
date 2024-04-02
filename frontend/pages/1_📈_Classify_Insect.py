@@ -47,9 +47,13 @@ def predic(predecir):
             st.balloons()
             infoInsect = ct.searchInsects(especie)
             Message = "**Nombre común:** "+infoInsect[0][0]+"\n\n **Nombre científico:** "+infoInsect[0][1]+"\n\n **División taxonómica:** "+infoInsect[0][2]
-            color = infoInsect[0][3]
-            if Register:
-                ct.insertRowInferencia(especie, location, longitud, color)
+            color = infoInsect[0][3]            
+            if Register:                
+                if st.session_state['loggedIn']:
+                    ct.insertRowInferencia(especie, location, longitud, color, st.session_state.userN, 0)
+                    st.success('Finding successfully recorded', icon="✅")
+                else:        
+                    ct.insertRowInferencia(especie, location, longitud, color, st.session_state.userN, 1)
         else:
             Message = especie
     else:
