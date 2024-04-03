@@ -16,23 +16,23 @@ col1, col2, col3, col4, col5 = st.columns(5)
 
 with col1:
    st.write("A butterfly")
-   st.image("./Butterfly.jpg")
+   st.image("./images/Butterfly.jpg")
 
 with col2:
    st.write("A dragonfly")
-   st.image("./Dragonfly.jpeg")
+   st.image("./images/Dragonfly.jpeg")
 
 with col3:
    st.write("A grasshopper")
-   st.image("./Grasshopper2.jpg")
+   st.image("./images/Grasshopper2.jpg")
 
 with col4:
    st.write("A Ladybird")
-   st.image("./Ladybird1.jpg")
+   st.image("./images/Ladybird1.jpg")
 
 with col5:
    st.write("A mosquito")
-   st.image("./Mosquito2.jpg")
+   st.image("./images/Mosquito2.jpg")
 
 st.write(
     '''Al navegar por este lugar encontrarás la herramienta de clasificación donde podrás cargar una imagen desde tu galería personal

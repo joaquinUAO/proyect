@@ -4,6 +4,8 @@ from PIL import Image
 from io import BytesIO
 import numpy as np
 import controller as ct
+import requests
+import json
 
 
 st.set_page_config(layout="wide", page_title="Classify Insect")
@@ -27,8 +29,23 @@ class_names = {
     4: "Mosquito"
 }
 
+def call_api(image_file):
+    url = f"http://localhost:8080/insects-model/predict"
+    #image = Image.open(image_file)
+    payload = {}
+    files=[
+    ('file',('prueba.jpg',open("prueba.jpg",'rb'),'image/jpeg'))
+    ]
+    headers = {}
+    response = requests.request("POST", url, headers=headers, data=payload, files=files)
+    return response.json()    
+    #st.image(image)
+    #st.write("The predicted class is: ", response.json())
+
 def fix_image(upload):
     image = Image.open(upload)
+    image.save("prueba.jpg")
+    st.session_state.imagen = upload
     col1.write("Original Image :camera:")
     col1.image(image)
 
@@ -36,13 +53,17 @@ def predic(predecir):
     col2.write("**Prediction** :wrench:")
     statusButton =True    
     if predecir == 1:
-        #call_api(sepal_length, sepal_width, petal_length, petal_width)
-        numeroRandom = np.random.randint(6) ###
-        if numeroRandom == 5:
+        response_json = call_api(st.session_state.imagen)
+        try:            
+            clase = response_json['Clase de Insecto']
+        except:
+            clase = 5
+        
+        if clase == 5:
             especie = "No reconocida"
         else:
-            especie = str(class_names[numeroRandom])
-        respuestaModelo = [numeroRandom, especie]
+            especie = str(class_names[clase])
+        respuestaModelo = [clase, especie]
         if respuestaModelo[0]<= 4:
             st.balloons()
             infoInsect = ct.searchInsects(especie)
@@ -89,4 +110,4 @@ if my_upload is not None:
     else:
         fix_image(upload=my_upload)
 else:
-    fix_image("./Ladybird2.jpg")
+    fix_image("./images/Ladybird2.jpg")
