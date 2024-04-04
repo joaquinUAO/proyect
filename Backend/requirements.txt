@@ -1,0 +1,7 @@
+tensorflow 
+tensorflow-io-gcs-filesystem == 0.31.0
+uvicorn
+fastapi
+python-multipart
+pillow
+numpy

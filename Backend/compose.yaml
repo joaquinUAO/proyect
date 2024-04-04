@@ -1,0 +1,18 @@
+services:    
+    api: 
+      container_name: docker-back      
+      restart: on-failure:5 #always
+      image: back_insectid
+      networks:
+        - back-red
+      ports:
+        - 8080:8080      
+      build:
+        dockerfile: Dockerfile
+      command: python main.py
+
+networks: 
+  back-red: {} 
+
+volumes: # we are going to persist the db data using volumes so that even if you stop the container, the data will persist within docker
+  dbdata: # <volume-name> - in Docker Dsektop, this will be prepended with the folder name
