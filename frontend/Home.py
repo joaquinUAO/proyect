@@ -16,7 +16,7 @@ col1, col2, col3, col4, col5 = st.columns(5)
 
 with col1:
    st.write("A butterfly")
-   st.image("./images/Butterfly.jpg")
+   st.image("./images/butterfly.jpg")
 
 with col2:
    st.write("A dragonfly")

@@ -30,7 +30,7 @@ class_names = {
 }
 
 def call_api(image_file):
-    url = f"http://localhost:8080/insects-model/predict"
+    url = f"http://docker-back:8080/insects-model/predict"
     #image = Image.open(image_file)
     payload = {}
     files=[
