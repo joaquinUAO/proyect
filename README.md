@@ -4,12 +4,12 @@
 
 Nuestro grupo de trabajo esta conformado por 6 personas cada uno con responsabilidades distintas.
 
-- Alejandro González - Project Manager
-- Valentina Martínez - Científica de Datos
-- Guillermo Rodríguez - Ingeniero de ML
-- Natalia López - Desarrolladora Backend
-- Manuel García - Desarrollador Frontend
-- Thiago Rivera -  Ingeniero de QA
+- Project Manager
+- Científica de Datos
+- Ingeniero de ML
+- Desarrolladora Backend
+- Desarrollador Frontend
+- Ingeniero de QA
 
 ### Especificación de Roles
 
